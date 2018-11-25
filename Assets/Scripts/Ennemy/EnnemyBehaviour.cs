@@ -76,8 +76,8 @@ public class EnnemyBehaviour : MonoBehaviour
             return;
 
         //Set sa position sur la sienne et l'active
-        obj.transform.position = transform.position;
-        obj.transform.rotation = transform.rotation;
+        obj.transform.position = this.transform.position;
+        obj.transform.rotation = this.transform.rotation;
         obj.SetActive(true);
     }
 

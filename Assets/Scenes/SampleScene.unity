@@ -1105,7 +1105,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Ennemy: {fileID: 1085366206494106, guid: ce2af30b463b5434cb126c0f1f43a470, type: 2}
   ennemyAmount: 5
-  addOrNotToAdd: 1
+  addOrNotToAdd: 0
 --- !u!4 &1511762469
 Transform:
   m_ObjectHideFlags: 0
@@ -1264,8 +1264,8 @@ MonoBehaviour:
   - {fileID: 506739435}
   - {fileID: 1825367217}
   - {fileID: 1950235235}
-  shipController: {fileID: 0}
-  score: {fileID: 0}
+  shipController: {fileID: 148163840}
+  score: {fileID: 620054446}
 --- !u!4 &1967940104
 Transform:
   m_ObjectHideFlags: 0

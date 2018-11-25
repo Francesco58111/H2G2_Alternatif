@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class EnnemyPooling : MonoBehaviour {
 
+
     public static EnnemyPooling currentState;
     public GameObject Ennemy;
     public int ennemyAmount = 10;
