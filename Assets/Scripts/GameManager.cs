@@ -2,14 +2,19 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class GameManager : MonoBehaviour
 {
     public float delay;
     public List<Transform> spawnPos;
     private int selectedSpawnPosition;
 
-    public ShipController shipController;
     public Scoring score;
+
+    
+
+
+
 
     private void Start()
     {
@@ -37,4 +42,6 @@ public class GameManager : MonoBehaviour
         obj.transform.rotation = selectedSpawn.rotation;
         obj.SetActive(true);
     }
+
+    
 }

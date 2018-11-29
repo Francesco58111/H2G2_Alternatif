@@ -11,11 +11,11 @@ public class ShipController : MonoBehaviour {
     public float shootingReload;
 
     //Coordonnées de chaque colonne du niveau
-    public Vector3 premier;
-    public Vector3 second;
-    public Vector3 third;
+    public Vector3 left;
+    public Vector3 middle;
+    public Vector3 right;
 
-    private Vector3 targetPosition;
+    public Vector3 targetPosition;
 
     [Header("SetUp Tir")]
     //Variables ajoutées par Emilie
@@ -33,9 +33,9 @@ public class ShipController : MonoBehaviour {
 
     void Start()
     {
-        premier = new Vector3(-4, 0, 0);
-        second = new Vector3(0.1f, 0, 0);
-        third = new Vector3(4, 0, 0);
+        left = new Vector3(-4, 0, 0);
+        middle = new Vector3(0.1f, 0, 0);
+        right = new Vector3(4, 0, 0);
     }
 
 
@@ -77,29 +77,42 @@ public class ShipController : MonoBehaviour {
     /// </summary>
     public void PlayerMove()
     {
-
+        /*
         if (Input.GetKeyDown(KeyCode.A))
         {
-            print("Left");
-            targetPosition = premier;
+            GoLeft();
         }
 
         if (Input.GetKeyDown(KeyCode.Z))
         {
-            print("Middle");
-            targetPosition = second;
+            GoMiddle();
         }
 
         if (Input.GetKeyDown(KeyCode.E))
         {
-            print("Right");
-            targetPosition = third;
+            GoRight();
         }
+        */
 
         if (targetPosition == transform.position)
             return;
 
         transform.position = Vector3.MoveTowards(transform.position, targetPosition, speed * Time.deltaTime);
+    }
+
+    public void GoRight()
+    {
+        targetPosition = right;
+    }
+
+    public void GoMiddle()
+    {
+        targetPosition = middle;
+    }
+
+    public void GoLeft()
+    {
+        targetPosition = left;
     }
 
     /*
