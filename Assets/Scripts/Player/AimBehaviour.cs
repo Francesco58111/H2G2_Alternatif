@@ -11,23 +11,34 @@ public class AimBehaviour : MonoBehaviour
     public Rigidbody rb;
     //Set de la vitesse du curseur
     public float aimSpeed = 10;
+    //viseur hauteur gagné up/down
+    public float heigh;
 
 
+    //vecteur viseur
+    private Vector3 upArrowVector;
+    private Vector3 downArrowVector;
 
-
+    private void Start()
+    {
+        upArrowVector = new Vector3(0, heigh, 0);
+        downArrowVector = new Vector3(0, -heigh,0);
+    }
     void Update()
     {
         //Update de la direction
         
         if (Input.GetKey(KeyCode.UpArrow))
-            Aiming(Vector3.forward);
+            Aiming(upArrowVector);
         if (Input.GetKey(KeyCode.DownArrow))
-            Aiming(Vector3.back);
+            Aiming(downArrowVector);
         
         if (Input.GetKey(KeyCode.LeftArrow))
             Aiming(Vector3.left);
         if (Input.GetKey(KeyCode.RightArrow))
             Aiming(Vector3.right);
+
+
     }
 
 

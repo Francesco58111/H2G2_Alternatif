@@ -8,7 +8,7 @@ public class ShipController : MonoBehaviour {
     [Header("Déplacement")]
 
     public float speed = 10f; // Vitesse de déplacement
-    public float shootingReload;
+
 
     //Coordonnées de chaque colonne du niveau
     public Vector3 premier;
@@ -17,12 +17,6 @@ public class ShipController : MonoBehaviour {
 
     private Vector3 targetPosition;
 
-    [Header("SetUp Tir")]
-    //Variables ajoutées par Emilie
-    public GameObject bulletPrefab;
-    public GameObject player;
-    private bool cooldown = true;
-    Vector3 playerPosition;
 
     [Header("SetUp paramètres du vaisseau")]
     public int shield = 1;
@@ -43,16 +37,11 @@ public class ShipController : MonoBehaviour {
     void Update()
     {
 
+
         PlayerMove();
 
         CheckHealth();
 
-        playerPosition = new Vector3(player.transform.position.x, player.transform.position.y, player.transform.position.z);
-
-        if (Input.GetKeyDown("space") && cooldown)
-        {
-            Shoot();
-        }
 
         
 
@@ -120,21 +109,6 @@ public class ShipController : MonoBehaviour {
     /// <summary>
     /// Tir
     /// </summary>
-    private void Shoot()
-    {
-        Instantiate<GameObject>(bulletPrefab, playerPosition, Quaternion.identity);
-        cooldown = false;
-        StartCoroutine(Reload());
-    }
-
-    /// <summary>
-    /// Temps de recharge
-    /// </summary>
-    /// <returns></returns>
-    IEnumerator Reload()
-    { 
-        yield return new WaitForSeconds(shootingReload);
-        cooldown = true;
-    }
+ 
     
 }

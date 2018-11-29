@@ -28,7 +28,7 @@ public class BulletBehavior : MonoBehaviour {
         }
 
         viseur = GameObject.Find("AimTarget");
-        player = GameObject.Find("Player");
+        player = GameObject.Find("Main Camera");
 
         Vector3 viseurPosition = viseur.transform.position;
         Vector3 playerPosition = player.transform.position;
