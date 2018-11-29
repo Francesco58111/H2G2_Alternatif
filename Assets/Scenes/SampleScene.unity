@@ -421,7 +421,7 @@ MeshRenderer:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 148163835}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -456,7 +456,7 @@ MeshFilter:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 148163835}
-  m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+  m_Mesh: {fileID: 4300000, guid: 0334561bdafcee9428062488925e439d, type: 3}
 --- !u!4 &148163839
 Transform:
   m_ObjectHideFlags: 0
@@ -466,7 +466,8 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 1319859564}
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2419,7 +2420,7 @@ Prefab:
         type: 2}
       propertyPath: shipController
       value: 
-      objectReference: {fileID: 148163840}
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 27383735a64236849b4b06c4dfe48660, type: 2}
   m_IsPrefabAsset: 0
@@ -2631,12 +2632,16 @@ Prefab:
         type: 2}
       propertyPath: player
       value: 
-      objectReference: {fileID: 148163835}
+      objectReference: {fileID: 0}
     - target: {fileID: 114568694450750438, guid: 822acc30f8db9ba459f87fe52f07e36b,
         type: 2}
       propertyPath: ennemyBehaviour
       value: 
       objectReference: {fileID: 319780181}
+    - target: {fileID: 1183884137016144, guid: 822acc30f8db9ba459f87fe52f07e36b, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 822acc30f8db9ba459f87fe52f07e36b, type: 2}
   m_IsPrefabAsset: 0
@@ -3142,7 +3147,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2023252367
 GameObject:
