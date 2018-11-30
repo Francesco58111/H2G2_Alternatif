@@ -18,6 +18,9 @@ public class AimBehaviour : MonoBehaviour
     private Vector3 upArrowVector;
     private Vector3 downArrowVector;
 
+    //vecteur viseur
+    private Vector3 upArrowVector;
+    private Vector3 downArrowVector;
 
 
 
@@ -41,6 +44,8 @@ public class AimBehaviour : MonoBehaviour
             Aiming(Vector3.left);
         if (Input.GetKey(KeyCode.RightArrow))
             Aiming(Vector3.right);
+
+
     }
 
 
