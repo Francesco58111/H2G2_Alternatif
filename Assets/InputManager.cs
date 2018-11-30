@@ -11,7 +11,7 @@ public class InputManager : MonoBehaviour
     public List<Text> buttonTextes;
     public List<String> actions;
     public int actionSelected = 1;
-    public ShipController shipController;
+    //public ShipController shipController;
 
 
 
@@ -33,18 +33,18 @@ public class InputManager : MonoBehaviour
         if (actions[actionIndex] == "GoLeft")
         {
             print("Set Left");
-            shipController.GoLeft();
+            ShipController.Instance.GoLeft();
             
         }
 
         if (actions[actionIndex] == "GoMiddle")
         {
-            shipController.GoMiddle();
+            ShipController.Instance.GoMiddle();
         }
 
         if (actions[actionIndex] == "GoRight")
         {
-            shipController.GoRight();
+            ShipController.Instance.GoRight();
         }
 
         if (actions[actionIndex] == "Cafe")

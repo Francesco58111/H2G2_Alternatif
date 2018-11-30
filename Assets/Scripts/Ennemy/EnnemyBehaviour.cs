@@ -52,7 +52,8 @@ public class EnnemyBehaviour : MonoBehaviour
         if (ennemyHealth < 1)
         {
             this.gameObject.SetActive(false);
-        }  
+            ennemyHealth = 1;
+        }
     }
 
     /// <summary>
