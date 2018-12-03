@@ -18,10 +18,6 @@ public class AimBehaviour : MonoBehaviour
     private Vector3 upArrowVector;
     private Vector3 downArrowVector;
 
-    //vecteur viseur
-    private Vector3 upArrowVector;
-    private Vector3 downArrowVector;
-
 
 
     private void Start()
