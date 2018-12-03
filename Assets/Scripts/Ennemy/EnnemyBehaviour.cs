@@ -10,8 +10,6 @@ public class EnnemyBehaviour : MonoBehaviour
 
     public float ennemySpeed = 100;
 
-    [Header("Fréquence de tir")]
-    public float firetime = 1.8f;
 
     [Header("Vie de l'ennemy")]
     [SerializeField]
@@ -23,7 +21,6 @@ public class EnnemyBehaviour : MonoBehaviour
     private void Start()
     {
         //Tir toutes les "firetime" seconde(s)
-        InvokeRepeating("EnnemyFire", firetime, firetime);
         ennemyHealth = 1;
     }
 
@@ -69,18 +66,7 @@ public class EnnemyBehaviour : MonoBehaviour
     /// <summary>
     /// Récupère le nombre de GameObject dans le pooling
     /// </summary>
-    private void EnnemyFire()
-    {
-        GameObject obj = EnnemyBulletPooling.currentBullets.GetPooledEnnemyBullets();
 
-        if (obj == null)
-            return;
-
-        //Set sa position sur la sienne et l'active
-        obj.transform.position = this.transform.position;
-        obj.transform.rotation = this.transform.rotation;
-        obj.SetActive(true);
-    }
 
     /// <summary>
     /// Collision avec le player _ GAME OVER
