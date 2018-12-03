@@ -27,7 +27,7 @@ public class EnnemyBulletBehaviour : MonoBehaviour
     {
         if(other.gameObject.tag == "Player")
         {
-            shipController.DamageTaken();
+            Health.Instance.LosingHealth();
             this.gameObject.SetActive(false);
         }
     }

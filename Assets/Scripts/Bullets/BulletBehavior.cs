@@ -5,7 +5,7 @@ using UnityEngine;
 public class BulletBehavior : MonoBehaviour {
     [Header("Aim SetUp")]
     public GameObject viseur;
-    public GameObject player;
+    public GameObject camera;
     
 
     public float bulletSpeed = 10f;
@@ -28,10 +28,10 @@ public class BulletBehavior : MonoBehaviour {
         }
 
         viseur = GameObject.Find("AimTarget");
-        player = GameObject.Find("Player");
+        camera = GameObject.Find("Main Camera");
 
         Vector3 viseurPosition = viseur.transform.position;
-        Vector3 playerPosition = player.transform.position;
+        Vector3 playerPosition = camera.transform.position;
 
         //Direction de la visée
         targetVector = viseurPosition - playerPosition;

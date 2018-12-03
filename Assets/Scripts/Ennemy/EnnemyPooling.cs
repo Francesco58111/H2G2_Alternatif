@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnnemyPooling : MonoBehaviour {
+public class EnnemyPooling : MonoBehaviour
+{
 
 
     public static EnnemyPooling currentState;
