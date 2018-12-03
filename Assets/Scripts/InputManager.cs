@@ -11,7 +11,7 @@ public class InputManager : MonoBehaviour
     public List<Text> buttonTextes;
     public List<String> actions;
     public int actionSelected = 1;
-    //public ShipController shipController;
+    
 
 
 
@@ -20,7 +20,7 @@ public class InputManager : MonoBehaviour
     private void Start()
     {
         //Set la list une première fois et la mélange
-        actions = new List<string> { "GoLeft", "GoMiddle", "GoRight", "Cafe", "Toast", "EssuieGlace", "Gaz", "Barbecue", "Boost", "Alarme" };
+        actions = new List<string> { "Gauche", "Milieu", "Droite", "Cafe", "Toast", "EssuieGlace", "Refroidir", "Barbecue", "Boost", "Alarme" };
         ShuffleActions();
     }
 
@@ -30,19 +30,17 @@ public class InputManager : MonoBehaviour
     /// <param name="actionIndex"></param>
     void SetActions(int actionIndex)
     {
-        if (actions[actionIndex] == "GoLeft")
+        if (actions[actionIndex] == "Gauche")
         {
-            print("Set Left");
-            ShipController.Instance.GoLeft();
-            
+            ShipController.Instance.GoLeft();            
         }
 
-        if (actions[actionIndex] == "GoMiddle")
+        if (actions[actionIndex] == "Milieu")
         {
             ShipController.Instance.GoMiddle();
         }
 
-        if (actions[actionIndex] == "GoRight")
+        if (actions[actionIndex] == "Droite")
         {
             ShipController.Instance.GoRight();
         }
@@ -60,11 +58,13 @@ public class InputManager : MonoBehaviour
         if (actions[actionIndex] == "EssuieGlace")
         {
             print("Essuie Glace");
+            StainEvent.Instance.Wip();
         }
 
-        if (actions[actionIndex] == "Gaz")
+        if (actions[actionIndex] == "Refroidir")
         {
-            print("Surplus de gaz");
+            print("Refroidissement des machines");
+            HeatEvent.Instance.CoolDownBoost();
         }
 
         if (actions[actionIndex] == "Barbecue")
@@ -75,6 +75,10 @@ public class InputManager : MonoBehaviour
         if (actions[actionIndex] == "Boost")
         {
             print("Vitesse lumière");
+            if(Boost.Instance.canBoost)
+            {
+                StartCoroutine(Boost.Instance.OnLightSpeed());
+            }
         }
 
         if (actions[actionIndex] == "Alarme")
@@ -88,6 +92,14 @@ public class InputManager : MonoBehaviour
     /// Réalise selon l'input l'action donnée
     /// </summary>
     void Update()
+    {
+        InputToAction();
+    }
+
+    /// <summary>
+    /// Déclenche une action selon l'input
+    /// </summary>
+    private void InputToAction()
     {
         //Input A
         if (Input.GetKeyDown(KeyCode.A))
@@ -137,7 +149,7 @@ public class InputManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.T))
         {
             SetActions(4);
-            buttons[4].image.color = Color.black; 
+            buttons[4].image.color = Color.black;
         }
         else
         {
@@ -148,7 +160,7 @@ public class InputManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Q))
         {
             SetActions(5);
-            buttons[5].image.color = Color.black; 
+            buttons[5].image.color = Color.black;
         }
         else
         {
