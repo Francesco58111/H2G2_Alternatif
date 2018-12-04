@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class Health : MonoBehaviour
 {
-
+    [Header("Set up de la vie")]
     public float health = 10;
     [SerializeField]
     float healthMax = 10;
@@ -13,14 +13,19 @@ public class Health : MonoBehaviour
 
     public static Health Instance;
 
-
+    [Header("Update de la vie")]
     public float healingSpeed;
-    public float damages;
+    public float damageTaken;
+    public bool isInvisible;
+
+    [Header("Récupération du GameObject player")]
+    public GameObject playerGO;
+
+
 
     void Awake()
     {
         Instance = this;
-        
     }
 
 
@@ -30,12 +35,19 @@ public class Health : MonoBehaviour
         HealthBarUpdate();
     }
 
+    /// <summary>
+    /// Inflige des dégâts
+    /// </summary>
     public void LosingHealth()
     {
-        health -= damages;
+        if(!isInvisible)
+            health -= damageTaken;
     }
 
 
+    /// <summary>
+    /// Guérisson
+    /// </summary>
     public void Healing()
     {
         if(health < healthMax)
@@ -48,15 +60,20 @@ public class Health : MonoBehaviour
         }
     }
 
-
+    /// <summary>
+    /// Check l'état de la vie
+    /// </summary>
     private void CheckHealth()
     {
         if (health < 0)
         {
-            this.gameObject.SetActive(false);
+            playerGO.SetActive(false);
         }
     }
 
+    /// <summary>
+    /// Update de l'UI
+    /// </summary>
     private void HealthBarUpdate()
     {
         healthBar.fillAmount = health / healthMax;

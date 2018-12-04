@@ -8,29 +8,40 @@ public class ShootScript : MonoBehaviour {
     //Variables ajoutées par Emilie
     public GameObject bulletPrefab;
     public GameObject cameraMain;
+
     private bool cooldown = true;
     Vector3 playerPosition;
     public float shootingReload;
 
-    // Use this for initialization
-    void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
+    public bool canShoot = true;
+
+
+    public static ShootScript Instance;
+
+
+
+
+    private void Awake()
+    {
+        Instance = this;
+    }
+
+    void Update () {
 
         playerPosition = new Vector3(cameraMain.transform.position.x, cameraMain.transform.position.y, cameraMain.transform.position.z);
 
-        if (Input.GetKeyDown("space") && cooldown)
+        if (Input.GetKeyDown("space") && cooldown && canShoot)
         {
             Shoot();
         }
     
     }
+
     private void Shoot()
     {
+
         Instantiate<GameObject>(bulletPrefab, playerPosition, Quaternion.identity);
+        HeatEvent.Instance.currentHeat += 2;
         cooldown = false;
         StartCoroutine(Reload());
     }
