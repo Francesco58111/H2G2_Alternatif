@@ -20,14 +20,14 @@ public class HyperspaceParticlesTransitions : MonoBehaviour {
 	void Update ()
     {
 
-        /*if (Input.GetKey(KeyCode.A))
+        if (Input.GetKey(KeyCode.A))
         {
             SetToLightSpeed();
         }
         if (Input.GetKey(KeyCode.Z))
         {
             SetToNormalSpeed();
-        }*/
+        }
     }
 
     void SetToLightSpeed()
