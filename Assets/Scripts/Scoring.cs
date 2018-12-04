@@ -9,6 +9,17 @@ public class Scoring : MonoBehaviour
     public int score;
     public float incrementingSpeed;
 
+    public int boostSpeed = 1;
+
+    public static Scoring Instance;
+
+
+
+
+    private void Awake()
+    {
+        Instance = this;
+    }
 
     void Update()
     {
@@ -20,7 +31,7 @@ public class Scoring : MonoBehaviour
     /// </summary>
     void ScoreUpdate()
     {
-        score += (int)(incrementingSpeed * Time.deltaTime);
+        score += (int)(incrementingSpeed * Time.deltaTime) * boostSpeed;
         string newScore = score.ToString();
         text.SetText(newScore);
     }
