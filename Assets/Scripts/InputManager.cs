@@ -2,26 +2,40 @@
 using UnityEngine;
 using UnityEngine.UI;
 using System;
+using TMPro;
 
 
 public class InputManager : MonoBehaviour
 {
 
-    public List<Button> buttons;
-    public List<Text> buttonTextes;
-    public List<String> actions;
+    public List<TMP_InputField> buttons;
+    public List<TextMeshProUGUI> buttonTextes;
+    private List<String> actions;
     public int actionSelected = 1;
-    
+
+    private Color normal;
+
+
+    public static InputManager Instance;
 
 
 
 
+    private void Awake()
+    {
+        Instance = this;
+    }
 
     private void Start()
     {
         //Set la list une première fois et la mélange
-        actions = new List<string> { "Gauche", "Milieu", "Droite", "Cafe", "Toast", "EssuieGlace", "Refroidir", "Barbecue", "Boost", "Alarme" };
+        actions = new List<string> { "Gauche", "Milieu", "Droite", "Lave-Vitre", "Refroidir", "Boost", "Alarme" };
         ShuffleActions();
+
+
+        //236, 221, 97,250
+        normal = new Color();
+        ColorUtility.TryParseHtmlString("ECDD61", out normal);
     }
 
     /// <summary>
@@ -45,19 +59,9 @@ public class InputManager : MonoBehaviour
             ShipController.Instance.GoRight();
         }
 
-        if (actions[actionIndex] == "Cafe")
+        if (actions[actionIndex] == "Lave-Vitre")
         {
-            print("Faire du café");
-        }
-
-        if (actions[actionIndex] == "Toast")
-        {
-            print("Toaster en route");
-        }
-
-        if (actions[actionIndex] == "EssuieGlace")
-        {
-            print("Essuie Glace");
+            print("Lave-Vitre");
             StainEvent.Instance.Wip();
         }
 
@@ -65,11 +69,6 @@ public class InputManager : MonoBehaviour
         {
             print("Refroidissement des machines");
             HeatEvent.Instance.CoolDownBoost();
-        }
-
-        if (actions[actionIndex] == "Barbecue")
-        {
-            print("Allumage du Barbecue");
         }
 
         if (actions[actionIndex] == "Boost")
@@ -84,6 +83,7 @@ public class InputManager : MonoBehaviour
         if (actions[actionIndex] == "Alarme")
         {
             print("Alerte ! Il y a une alerte !");
+            AlarmEvent.Instance.SetAlarm();
         }
     }
 
@@ -105,117 +105,84 @@ public class InputManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.A))
         {
             SetActions(0);
-            buttons[0].image.color = Color.black;
+            buttons[0].image.color = Color.white;
         }
         else
         {
-            buttons[0].image.color = Color.white;
+            buttons[0].image.color = Color.yellow;
         }
 
         //Input Z
         if (Input.GetKeyDown(KeyCode.Z))
         {
             SetActions(1);
-            buttons[1].image.color = Color.black;
+            buttons[1].image.color = Color.white;
         }
         else
         {
-            buttons[1].image.color = Color.white;
+            buttons[1].image.color = Color.yellow;
         }
 
         //Input E
         if (Input.GetKeyDown(KeyCode.E))
         {
             SetActions(2);
-            buttons[2].image.color = Color.black;
+            buttons[2].image.color = Color.white;
         }
         else
         {
-            buttons[2].image.color = Color.white;
+            buttons[2].image.color = Color.yellow;
         }
 
         //Input R
         if (Input.GetKeyDown(KeyCode.R))
         {
             SetActions(3);
-            buttons[3].image.color = Color.black;
+            buttons[3].image.color = Color.white;
         }
         else
         {
-            buttons[3].image.color = Color.white;
+            buttons[3].image.color = Color.yellow;
         }
 
         //Input T
         if (Input.GetKeyDown(KeyCode.T))
         {
             SetActions(4);
-            buttons[4].image.color = Color.black;
-        }
-        else
-        {
             buttons[4].image.color = Color.white;
         }
+        else
+        {
+            buttons[4].image.color = Color.yellow;
+        }
 
-        //Input Q
-        if (Input.GetKeyDown(KeyCode.Q))
+        //Input Y
+        if (Input.GetKeyDown(KeyCode.Y))
         {
             SetActions(5);
-            buttons[5].image.color = Color.black;
-        }
-        else
-        {
             buttons[5].image.color = Color.white;
         }
+        else
+        {
+            buttons[5].image.color = Color.yellow;
+        }
 
-        //Input S
-        if (Input.GetKeyDown(KeyCode.S))
+        //Input U
+        if (Input.GetKeyDown(KeyCode.U))
         {
             SetActions(6);
-            buttons[6].image.color = Color.black;
-        }
-        else
-        {
             buttons[6].image.color = Color.white;
         }
-
-        //Input D
-        if (Input.GetKeyDown(KeyCode.D))
-        {
-            SetActions(7);
-            buttons[7].image.color = Color.black;
-        }
         else
         {
-            buttons[7].image.color = Color.white;
-        }
-
-        //Input F
-        if (Input.GetKeyDown(KeyCode.F))
-        {
-            SetActions(8);
-            buttons[8].image.color = Color.black;
-        }
-        else
-        {
-            buttons[8].image.color = Color.white;
-        }
-
-        //Input G
-        if (Input.GetKeyDown(KeyCode.G))
-        {
-            SetActions(9);
-            buttons[9].image.color = Color.black;
-        }
-        else
-        {
-            buttons[9].image.color = Color.white;
+            buttons[6].image.color = Color.yellow;
         }
     }
 
     /// <summary>
     /// Mélange les actions x fois
     /// </summary>
-    void ShuffleActions()
+    public void ShuffleActions()
     {
         for (int i = 0; i < buttons.Count; i++)
         {
