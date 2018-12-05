@@ -13,8 +13,7 @@ public class InputManager : MonoBehaviour
     private List<String> actions;
     public int actionSelected = 1;
 
-    private Color normal;
-
+    public Scoring scoriiiiiing;
 
     public static InputManager Instance;
 
@@ -31,11 +30,6 @@ public class InputManager : MonoBehaviour
         //Set la list une première fois et la mélange
         actions = new List<string> { "Gauche", "Milieu", "Droite", "Lave-Vitre", "Refroidir", "Boost", "Alarme" };
         ShuffleActions();
-
-
-        //236, 221, 97,250
-        normal = new Color();
-        ColorUtility.TryParseHtmlString("ECDD61", out normal);
     }
 
     /// <summary>
@@ -73,10 +67,11 @@ public class InputManager : MonoBehaviour
 
         if (actions[actionIndex] == "Boost")
         {
-            print("Vitesse lumière");
-            if(Boost.Instance.canBoost)
+            
+            if(Boost.Instance.canBoost == true)
             {
-                StartCoroutine(Boost.Instance.OnLightSpeed());
+                print("Vitesse lumière");
+                scoriiiiiing.OnLightSpeed();
             }
         }
 
@@ -105,6 +100,10 @@ public class InputManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.A))
         {
             SetActions(0);
+        }
+
+        if (Input.GetKey(KeyCode.A))
+        {
             buttons[0].image.color = Color.white;
         }
         else
@@ -112,10 +111,16 @@ public class InputManager : MonoBehaviour
             buttons[0].image.color = Color.yellow;
         }
 
+
         //Input Z
         if (Input.GetKeyDown(KeyCode.Z))
         {
             SetActions(1);
+            buttons[1].image.color = Color.white;
+        }
+
+        if (Input.GetKey(KeyCode.Z))
+        {
             buttons[1].image.color = Color.white;
         }
         else
@@ -123,10 +128,15 @@ public class InputManager : MonoBehaviour
             buttons[1].image.color = Color.yellow;
         }
 
+
         //Input E
         if (Input.GetKeyDown(KeyCode.E))
         {
             SetActions(2);
+        }
+        
+        if (Input.GetKey(KeyCode.E))
+        {
             buttons[2].image.color = Color.white;
         }
         else
@@ -134,10 +144,15 @@ public class InputManager : MonoBehaviour
             buttons[2].image.color = Color.yellow;
         }
 
+
         //Input R
         if (Input.GetKeyDown(KeyCode.R))
         {
             SetActions(3);
+        }
+
+        if (Input.GetKey(KeyCode.R))
+        {
             buttons[3].image.color = Color.white;
         }
         else
@@ -145,10 +160,15 @@ public class InputManager : MonoBehaviour
             buttons[3].image.color = Color.yellow;
         }
 
+
         //Input T
         if (Input.GetKeyDown(KeyCode.T))
         {
             SetActions(4);
+        }
+
+        if (Input.GetKey(KeyCode.T))
+        {
             buttons[4].image.color = Color.white;
         }
         else
@@ -156,10 +176,16 @@ public class InputManager : MonoBehaviour
             buttons[4].image.color = Color.yellow;
         }
 
+
         //Input Y
         if (Input.GetKeyDown(KeyCode.Y))
         {
             SetActions(5);
+        }
+
+
+        if (Input.GetKey(KeyCode.Y))
+        {
             buttons[5].image.color = Color.white;
         }
         else
@@ -167,10 +193,15 @@ public class InputManager : MonoBehaviour
             buttons[5].image.color = Color.yellow;
         }
 
+
         //Input U
         if (Input.GetKeyDown(KeyCode.U))
         {
             SetActions(6);
+        }
+
+        if (Input.GetKey(KeyCode.U))
+        {
             buttons[6].image.color = Color.white;
         }
         else

@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviour
     public float spawnDelay;
 
     public Scoring score;
+    
 
     //float pour random la position de spawn
     private float randomForPosition = 0;
@@ -78,9 +79,9 @@ public class GameManager : MonoBehaviour
         }
 
 
-        print("randomForPosition : " + randomForPosition);
-        print("MinRange : " + minRange + " / " + " MaxRange : " + maxRange);
-        print("spawnPosition : " + spawnPosition);
+        //print("randomForPosition : " + randomForPosition);
+        //print("MinRange : " + minRange + " / " + " MaxRange : " + maxRange);
+        //print("spawnPosition : " + spawnPosition);
         InitializeSpawn();
     }
 

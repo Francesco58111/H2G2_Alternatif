@@ -20,6 +20,7 @@ public class AimBehaviour : MonoBehaviour
 
 
 
+
     private void Start()
     {
         upArrowVector = new Vector3(0, heigh, 0);
@@ -31,6 +32,7 @@ public class AimBehaviour : MonoBehaviour
     {
         //Update de la direction
 
+        
         if (Input.GetKey(KeyCode.UpArrow))
             Aiming(upArrowVector);
         if (Input.GetKey(KeyCode.DownArrow))

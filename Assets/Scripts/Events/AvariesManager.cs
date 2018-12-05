@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections;
 using UnityEngine;
 
 public class AvariesManager : MonoBehaviour
@@ -53,7 +51,7 @@ public class AvariesManager : MonoBehaviour
     private void LaunchEvent()
     {
         //StopAllCoroutines();
-        currentEvent = UnityEngine.Random.Range(0, 2);
+        currentEvent = Random.Range(0, 2);
         PlayEvent(currentEvent);
         
     }

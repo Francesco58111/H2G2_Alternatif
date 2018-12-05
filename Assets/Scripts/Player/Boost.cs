@@ -14,14 +14,15 @@ public class Boost : MonoBehaviour
 
     public float lightSpeedDuration = 1;
 
-
+    public bool onBoost;
     public bool canBoost;
 
     public static Boost Instance;
+    public Scoring scoriiiiiing;
 
 
 
-    private void Awake()
+    void Awake()
     {
         Instance = this;
     }
@@ -29,33 +30,40 @@ public class Boost : MonoBehaviour
 
     void Update()
     {
+        boostBar.fillAmount = currentEnergy / energyMax;
+
         if (currentEnergy == energyMax)
             canBoost = true;
+
+        if (onBoost)
+            BoostingTimer();
     }
 
+
+    /// <summary>
+    /// Timer pour le boost
+    /// </summary>
+    private void BoostingTimer()
+    {
+        if (currentEnergy > 0)
+        {
+            currentEnergy -= 0.1f;
+        }
+        else
+        {
+            currentEnergy = 0;
+            onBoost = false;
+            scoriiiiiing.OffLightSpeed();
+        }
+    }
+
+
+    /// <summary>
+    /// Incrémente l'energy dans la barre
+    /// </summary>
     public void AddEnergy()
     {
         if (currentEnergy < energyMax)
             boostBar.fillAmount += 0.1f;
-    }
-
-
-    public void LightSpeedOn()
-    {
-        Health.Instance.isInvisible = true;
-        Scoring.Instance.boostSpeed = 4;
-    }
-
-    public void LightSpeedOff()
-    {
-        Health.Instance.isInvisible = false;
-        Scoring.Instance.boostSpeed = 1;
-    }
-
-    public IEnumerator OnLightSpeed()
-    {
-        LightSpeedOn();
-        yield return new WaitForSeconds(lightSpeedDuration);
-        LightSpeedOff();
     }
 }

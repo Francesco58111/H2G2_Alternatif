@@ -87,5 +87,6 @@ public class EnnemyBehaviour : MonoBehaviour
     private void DeadCollision()
     {
         this.gameObject.SetActive(false);
+        Health.Instance.LosingHealth();
     }
 }

@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 public class Health : MonoBehaviour
@@ -10,6 +8,7 @@ public class Health : MonoBehaviour
     [SerializeField]
     float healthMax = 10;
     public Image healthBar;
+    
 
     public static Health Instance;
 
