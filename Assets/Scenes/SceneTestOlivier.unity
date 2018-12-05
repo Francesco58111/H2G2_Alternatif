@@ -316,7 +316,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 148306740}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.1, y: 0.990078, z: -20.65}
+  m_LocalPosition: {x: 0.1, y: 0.990078, z: -6.97}
   m_LocalScale: {x: 18, y: 10, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -658,6 +658,53 @@ CanvasRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 271490889}
   m_CullTransparentMesh: 0
+--- !u!1 &278855698
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 278855699}
+  - component: {fileID: 278855700}
+  m_Layer: 0
+  m_Name: EnnemieShooterSpawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &278855699
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 278855698}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 41.6}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 16
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &278855700
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 278855698}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9edd92a9a9c60c643b67d780c5348c7c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isGameRunning: 0
+  ennemieShooter: {fileID: 1192648964280108, guid: 9ba520c5b626de7469d77824771b3e6f,
+    type: 2}
+  spawnDelay: 8
+  minSpawnRangeX: 20
+  minSpawnRangeY: 20
+  spawnerObjectPosition: {fileID: 278855699}
 --- !u!1 &295984289
 GameObject:
   m_ObjectHideFlags: 0
@@ -1420,6 +1467,7 @@ MonoBehaviour:
   text: {fileID: 936932098}
   score: 0
   incrementingSpeed: 60
+  boostSpeed: 1
 --- !u!114 &936932098
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2042,7 +2090,9 @@ MonoBehaviour:
   healthMax: 10
   healthBar: {fileID: 1706724680}
   healingSpeed: 10
-  damages: 1
+  damageTaken: 1
+  isInvisible: 0
+  playerGO: {fileID: 1597411659}
 --- !u!4 &1425846639
 Transform:
   m_ObjectHideFlags: 0
@@ -2345,7 +2395,7 @@ Transform:
   m_LocalScale: {x: 5, y: 5, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1536340059
 Prefab:
@@ -2456,6 +2506,7 @@ MonoBehaviour:
     type: 2}
   cameraMain: {fileID: 1573749886}
   shootingReload: 0.3
+  canShoot: 1
 --- !u!81 &1573749888
 AudioListener:
   m_ObjectHideFlags: 0
@@ -2728,7 +2779,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1601775937
 GameObject:
@@ -3891,7 +3942,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4364057470642796, guid: ce2af30b463b5434cb126c0f1f43a470, type: 2}
       propertyPath: m_RootOrder
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ce2af30b463b5434cb126c0f1f43a470, type: 2}
