@@ -1,19 +1,26 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Animations;
 
-public class EnnemyBehaviour : MonoBehaviour
-{
+public class EnnemieShooterBehavior : MonoBehaviour {
+
     [Header("Déplacement Ennemy")]
     public Rigidbody ennemyRigidbody;
 
     public float ennemySpeed = 100;
+    private float delay;
+    public float moveTime = 4;
+    public float reloadDelay = 5;
 
 
     [Header("Vie de l'ennemy")]
     [SerializeField]
     int ennemyHealth = 3;
+
+    public GameObject ennemieBullet;
+
+    public GameObject parentObject;
 
 
 
@@ -22,13 +29,26 @@ public class EnnemyBehaviour : MonoBehaviour
     {
         //Tir toutes les "firetime" seconde(s)
         ennemyHealth = 1;
-    }
+        moveTime = 1;
 
+    }
+    private void Awake()
+    {
+        StartCoroutine(Shoot());
+    }
     void Update()
     {
         CheckingHealth();
+        if ( moveTime >0)
+        {
+            transform.Translate(Vector3.down * Time.deltaTime * ennemySpeed);
+            moveTime -= Time.deltaTime;
+        }
+        
 
-        EnnemyMove();
+
+
+
     }
 
     /// <summary>
@@ -48,25 +68,9 @@ public class EnnemyBehaviour : MonoBehaviour
     {
         if (ennemyHealth < 1)
         {
-            this.gameObject.SetActive(false);
-            ennemyHealth = 1;
+            Destroy(this.gameObject);
         }
     }
-
-    /// <summary>
-    /// Déplacement de l'ennemy en -z
-    /// </summary>
-    private void EnnemyMove()
-    {
-        ennemyRigidbody.velocity = Vector3.back * ennemySpeed * Time.deltaTime;
-    }
-
-
-
-    /// <summary>
-    /// Récupère le nombre de GameObject dans le pooling
-    /// </summary>
-
 
     /// <summary>
     /// Collision avec le player _ GAME OVER
@@ -86,6 +90,19 @@ public class EnnemyBehaviour : MonoBehaviour
     /// </summary>
     private void DeadCollision()
     {
-        this.gameObject.SetActive(false);
+        //Destroy(this.gameObject);
     }
+
+    IEnumerator Shoot()
+    {
+        for (; ;)
+        {
+            Instantiate<GameObject>(ennemieBullet,gameObject.transform.position,Quaternion.identity);
+            print("is in coroutine");
+            yield return new WaitForSeconds(reloadDelay);
+        }
+
+    }
+
 }
+

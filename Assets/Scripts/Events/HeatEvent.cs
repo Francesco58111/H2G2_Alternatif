@@ -18,9 +18,8 @@ public class HeatEvent : MonoBehaviour
     public float lowSpeed;
     
     
-
-
     public static HeatEvent Instance;
+
 
 
 
@@ -48,7 +47,6 @@ public class HeatEvent : MonoBehaviour
     {
         ShootScript.Instance.canShoot = false;
         overheat.gameObject.SetActive(true);
-        //currentHeat = maxHeat;
 
         if (currentHeat < 0)
         {
@@ -79,25 +77,28 @@ public class HeatEvent : MonoBehaviour
 
         if (currentHeat < 7)
         {
-            overheat.gameObject.SetActive(false);
             cooldownSpeed = highSpeed;
         }
 
         if (currentHeat < 0)
         {
-
             cooldownSpeed = 0;
         }
 
         if (currentHeat > 7 && currentHeat < 10)
         {
             cooldownSpeed = highSpeed;
-            overheat.gameObject.SetActive(true);
+            
         }
 
         if (currentHeat>maxHeat)
         {
             isOverheated = true;
+        }
+        else
+        {
+            isOverheated = false;
+            overheat.gameObject.SetActive(false);
         }
     }
 }

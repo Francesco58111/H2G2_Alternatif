@@ -3,14 +3,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EventsManager : MonoBehaviour
+public class AvariesManager : MonoBehaviour
 {
     [Header("Events Parameters")]
     public float delayBeforeEvent;
-    private int currentEvent;
+    private int currentEvent = 0;
     public bool isEventLaunch;
 
-    public static EventsManager Instance;
+    public static AvariesManager Instance;
 
 
 
@@ -18,8 +18,13 @@ public class EventsManager : MonoBehaviour
     {
         Instance = this;
     }
-    
-    
+
+    private void Start()
+    {
+        StartCoroutine(LaunchEventIn());
+    }
+
+    /*
     void Update()
     {
         if(!isEventLaunch)
@@ -31,6 +36,7 @@ public class EventsManager : MonoBehaviour
             CheckEventStatus();
         }
     }
+    */
 
     /// <summary>
     /// Lance une fonction à partir de x secondes
@@ -40,8 +46,16 @@ public class EventsManager : MonoBehaviour
     {
         isEventLaunch = true;
         yield return new WaitForSeconds(delayBeforeEvent);
-        currentEvent = UnityEngine.Random.Range(0, 1); ;
+        LaunchEvent();
+        StartCoroutine(LaunchEventIn());
+    }
+
+    private void LaunchEvent()
+    {
+        //StopAllCoroutines();
+        currentEvent = UnityEngine.Random.Range(0, 2);
         PlayEvent(currentEvent);
+        
     }
 
     /// <summary>
@@ -51,10 +65,43 @@ public class EventsManager : MonoBehaviour
     void PlayEvent(int selectedEvent)
     {
         if (selectedEvent == 0 && HeatEvent.Instance.isOverheated == false)
+        {
             HeatEvent.Instance.Overheating();
+            //InputManager.Instance.ShuffleActions();
+        }
+        else
+        {
+            LaunchEvent();
+        }
+
 
         if (selectedEvent == 1 && StainEvent.Instance.isThereAStain == false)
+        {
             StainEvent.Instance.StainAppears();
+            //InputManager.Instance.ShuffleActions();
+        }
+        else
+        {
+            LaunchEvent();
+        }
+        
+
+        /*
+        if (selectedEvent == 2)
+            InputManager.Instance.ShuffleActions();
+        */
+
+
+        if (selectedEvent == 2 && AlarmEvent.Instance.isAlerteOn == false)
+        {
+            AlarmEvent.Instance.SetAlarm();
+            //InputManager.Instance.ShuffleActions();
+        }
+        else
+        {
+            LaunchEvent();
+        }
+        
     }
 
 

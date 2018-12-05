@@ -17,6 +17,7 @@ public class BulletBehavior : MonoBehaviour {
 
     [Header("Récupération du script Ennemy")]
     public EnnemyBehaviour ennemyBehaviour;
+    public EnnemieShooterBehavior ennemieShooterBehavior;
 
 
 
@@ -55,6 +56,7 @@ public class BulletBehavior : MonoBehaviour {
             print("Touché");
 
             other.gameObject.GetComponent<EnnemyBehaviour>().TakingDamage(damage);
+            other.gameObject.GetComponent<EnnemieShooterBehavior>().TakingDamage(damage);
             /*
             if (ennemyBehaviour == null)
             {

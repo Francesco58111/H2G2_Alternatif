@@ -9,18 +9,12 @@ public class ShipController : MonoBehaviour {
 
     public float speed = 10f; // Vitesse de déplacement
 
-
     //Coordonnées de chaque colonne du niveau
     public Vector3 left;
     public Vector3 middle;
     public Vector3 right;
 
     public Vector3 targetPosition;
-
-    [Header("SetUp paramètres du vaisseau")]
-    public int shield = 1;
-    public GameManager gameManager;
-
 
     public static ShipController Instance;
 
@@ -34,9 +28,9 @@ public class ShipController : MonoBehaviour {
 
     void Start()
     {
-        left = new Vector3(-4, 0, 0);
+        left = new Vector3(-1, 0, 0);
         middle = new Vector3(0.1f, 0, 0);
-        right = new Vector3(4, 0, 0);
+        right = new Vector3(1, 0, 0);
     }
 
 

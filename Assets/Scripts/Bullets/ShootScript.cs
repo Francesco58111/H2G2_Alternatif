@@ -41,7 +41,7 @@ public class ShootScript : MonoBehaviour {
     {
 
         Instantiate<GameObject>(bulletPrefab, playerPosition, Quaternion.identity);
-        HeatEvent.Instance.currentHeat += 2;
+        //HeatEvent.Instance.currentHeat += 2;
         cooldown = false;
         StartCoroutine(Reload());
     }
