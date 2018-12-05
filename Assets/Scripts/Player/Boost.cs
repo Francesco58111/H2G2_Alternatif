@@ -19,6 +19,7 @@ public class Boost : MonoBehaviour
 
     public static Boost Instance;
     public Scoring scoriiiiiing;
+    public HyperspaceParticlesTransitions FX;
 
 
 
@@ -36,7 +37,14 @@ public class Boost : MonoBehaviour
             canBoost = true;
 
         if (onBoost)
+        {
             BoostingTimer();
+            FX.SetToLightSpeed();
+        }
+        else
+        {
+            FX.SetToNormalSpeed();
+        }
     }
 
 
@@ -45,6 +53,8 @@ public class Boost : MonoBehaviour
     /// </summary>
     private void BoostingTimer()
     {
+
+
         if (currentEnergy > 0)
         {
             currentEnergy -= 0.1f;

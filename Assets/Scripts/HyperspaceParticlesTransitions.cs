@@ -13,6 +13,8 @@ public class HyperspaceParticlesTransitions : MonoBehaviour {
     public float NormalSpeedLenghtScale;
     public float LightSpeedLenghtScale;
 
+    public float speedModifier = 2;
+
     // Use this for initialization
     void Start () {
         HyperSpaceParticlesSmall.lengthScale = NormalSpeedLenghtScale;
@@ -25,7 +27,7 @@ public class HyperspaceParticlesTransitions : MonoBehaviour {
 	// Update is called once per frame
 	void Update ()
     {
-
+        /*
         if (Input.GetKey(KeyCode.A))
         {
             SetToLightSpeed();
@@ -34,28 +36,30 @@ public class HyperspaceParticlesTransitions : MonoBehaviour {
         {
             SetToNormalSpeed();
         }
+        */
     }
 
-    void SetToLightSpeed()
+    public void SetToLightSpeed()
     {
         var main = HyperSpaceParticlesSmall2.main;
         var main2 = HyperSpaceParticlesLarge2.main;
-        main.simulationSpeed = Mathf.Lerp(main.simulationSpeed, 3f, 2 * Time.deltaTime);
-        main2.simulationSpeed = Mathf.Lerp(main2.simulationSpeed, 1.5f, 2 * Time.deltaTime);
+        main.simulationSpeed = Mathf.Lerp(main.simulationSpeed, 3f, speedModifier * Time.deltaTime);
+        main2.simulationSpeed = Mathf.Lerp(main2.simulationSpeed, 1.5f, speedModifier * Time.deltaTime);
+        
 
-        HyperSpaceParticlesSmall.lengthScale = Mathf.Lerp(HyperSpaceParticlesSmall.lengthScale, LightSpeedLenghtScale, 2*Time.deltaTime);
-        HyperSpaceParticlesLarge.lengthScale = Mathf.Lerp(HyperSpaceParticlesLarge.lengthScale, LightSpeedLenghtScale, 2*Time.deltaTime);
+        HyperSpaceParticlesSmall.lengthScale = Mathf.Lerp(HyperSpaceParticlesSmall.lengthScale, LightSpeedLenghtScale, speedModifier * Time.deltaTime);
+        HyperSpaceParticlesLarge.lengthScale = Mathf.Lerp(HyperSpaceParticlesLarge.lengthScale, LightSpeedLenghtScale, speedModifier * Time.deltaTime);
     }
 
-    void SetToNormalSpeed()
+    public void SetToNormalSpeed()
     {
         var main = HyperSpaceParticlesSmall2.main;
         var main2 = HyperSpaceParticlesLarge2.main;
         main.simulationSpeed = Mathf.Lerp(main.simulationSpeed, 1f, 2 * Time.deltaTime);
         main2.simulationSpeed = Mathf.Lerp(main2.simulationSpeed, 0.75f, 2 * Time.deltaTime);
 
-        HyperSpaceParticlesSmall.lengthScale = Mathf.Lerp(HyperSpaceParticlesSmall.lengthScale, NormalSpeedLenghtScale, 2*Time.deltaTime);
-        HyperSpaceParticlesLarge.lengthScale = Mathf.Lerp(HyperSpaceParticlesLarge.lengthScale, NormalSpeedLenghtScale, 2*Time.deltaTime);
+        HyperSpaceParticlesSmall.lengthScale = Mathf.Lerp(HyperSpaceParticlesSmall.lengthScale, NormalSpeedLenghtScale, speedModifier * Time.deltaTime);
+        HyperSpaceParticlesLarge.lengthScale = Mathf.Lerp(HyperSpaceParticlesLarge.lengthScale, NormalSpeedLenghtScale, speedModifier * Time.deltaTime);
     }
 
 }
