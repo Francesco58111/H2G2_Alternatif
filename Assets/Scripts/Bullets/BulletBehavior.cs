@@ -55,8 +55,9 @@ public class BulletBehavior : MonoBehaviour {
         {
             print("Touché");
 
+            
             other.gameObject.GetComponent<EnnemyBehaviour>().TakingDamage(damage);
-            other.gameObject.GetComponent<EnnemieShooterBehavior>().TakingDamage(damage);
+            
             /*
             if (ennemyBehaviour == null)
             {
@@ -66,6 +67,26 @@ public class BulletBehavior : MonoBehaviour {
             */
             this.gameObject.SetActive(false);
         }
+        if (other.gameObject.tag == "EnnemyShooter")
+        {
+            print("Touché");
+
+
+            other.gameObject.GetComponent<EnnemieShooterBehavior>().TakingDamage(damage);
+
+            /*
+            if (ennemyBehaviour == null)
+            {
+                ennemyBehaviour = other.gameObject.GetComponent<EnnemyBehaviour>();
+            }
+            ennemyBehaviour.TakingDamage(damage);
+            */
+            this.gameObject.SetActive(false);
+        }
+
+
+        
     }
+
 
 }
