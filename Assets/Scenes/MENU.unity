@@ -691,6 +691,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sceneToLoad: FINAL
+  scoreSlots:
+  - {fileID: 73477818}
+  - {fileID: 766202313}
+  - {fileID: 944403739}
+  - {fileID: 273787809}
+  - {fileID: 1164804565}
+  scores: 0000000000000000000000000000000000000000
 --- !u!4 &279285474
 Transform:
   m_ObjectHideFlags: 0

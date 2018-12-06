@@ -48,8 +48,10 @@ public class GameManager : MonoBehaviour
 
     public void GameOver()
     {
+        PlayerPrefs.SetInt("New Score", (int)score.score);
         SceneManager.LoadScene(goBackToMenu);
     }
+    
 
     /// <summary>
     /// Débute le spawn d'un ennemy après un delai

@@ -15,8 +15,8 @@ public class Scoring : MonoBehaviour
 
     void Update()
     {
-        ScoreUpdate();
-
+        if (ShipController.Instance.gameObject == true)
+            ScoreUpdate();
 
         if (Input.GetKeyDown(KeyCode.N))
             OnLightSpeed();
