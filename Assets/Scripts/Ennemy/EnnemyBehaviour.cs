@@ -21,7 +21,7 @@ public class EnnemyBehaviour : MonoBehaviour
     private void Start()
     {
         //Tir toutes les "firetime" seconde(s)
-        ennemyHealth = 1;
+        ennemyHealth = 3;
     }
 
     void Update()
@@ -49,7 +49,7 @@ public class EnnemyBehaviour : MonoBehaviour
         if (ennemyHealth < 1)
         {
             this.gameObject.SetActive(false);
-            ennemyHealth = 1;
+            ennemyHealth = 3;
         }
     }
 

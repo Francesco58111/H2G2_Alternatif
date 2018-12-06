@@ -7,7 +7,6 @@ public class AlarmEvent : MonoBehaviour
     [Header("SetUp Son")]
     public AudioClip alarmClip;
     public AudioSource alarmSource;
-    public static AlarmEvent Instance;
     public GameObject alarmIcon;
 
     public bool isAlerteOn = false;
@@ -17,7 +16,6 @@ public class AlarmEvent : MonoBehaviour
 
     private void Awake()
     {
-        Instance = this;
         alarmSource.clip = alarmClip;
     }
 

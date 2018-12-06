@@ -16,18 +16,10 @@ public class HeatEvent : MonoBehaviour
     private float cooldownSpeed;
     public float highSpeed;
     public float lowSpeed;
-    
-    
-    public static HeatEvent Instance;
 
 
 
 
-
-    private void Awake()
-    {
-        Instance = this;
-    }
 
 
     void Update()
@@ -59,7 +51,11 @@ public class HeatEvent : MonoBehaviour
     /// </summary>
     public void CoolDownBoost()
     {
-        currentHeat -= 2;
+        if (currentHeat > 0)
+        {
+            currentHeat -= 2;
+        }
+        
     }
 
     

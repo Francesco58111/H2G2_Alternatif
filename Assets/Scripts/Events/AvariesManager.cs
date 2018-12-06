@@ -5,26 +5,30 @@ public class AvariesManager : MonoBehaviour
 {
     [Header("Events Parameters")]
     public float delayBeforeEvent;
+    [SerializeField]
     private int currentEvent = 0;
+    private int lastEvent;
     public bool isEventLaunch;
 
-    public static AvariesManager Instance;
+    public InputManager inputManager;
+    public StainEvent stainEvent;
+    public AlarmEvent alarmEvent;
+    public HeatEvent heatEvent;
 
 
 
-    private void Awake()
-    {
-        Instance = this;
-    }
+
 
     private void Start()
     {
         StartCoroutine(LaunchEventIn());
+        //LaunchEvent();
     }
 
-    /*
+    
     void Update()
     {
+        /*
         if(!isEventLaunch)
         {
             StartCoroutine(LaunchEventIn());
@@ -33,8 +37,9 @@ public class AvariesManager : MonoBehaviour
         {
             CheckEventStatus();
         }
+        */
     }
-    */
+    
 
     /// <summary>
     /// Lance une fonction à partir de x secondes
@@ -51,7 +56,8 @@ public class AvariesManager : MonoBehaviour
     private void LaunchEvent()
     {
         //StopAllCoroutines();
-        currentEvent = Random.Range(0, 2);
+        if(currentEvent == lastEvent)
+            currentEvent = Random.Range(0, 2);
         PlayEvent(currentEvent);
         
     }
@@ -62,25 +68,19 @@ public class AvariesManager : MonoBehaviour
     /// <param name="selectedEvent"></param>
     void PlayEvent(int selectedEvent)
     {
-        if (selectedEvent == 0 && HeatEvent.Instance.isOverheated == false)
+        lastEvent = currentEvent;
+
+        if (selectedEvent == 0 && heatEvent.isOverheated == false)
         {
-            HeatEvent.Instance.Overheating();
-            //InputManager.Instance.ShuffleActions();
-        }
-        else
-        {
-            LaunchEvent();
+            heatEvent.Overheating();
+            inputManager.ShuffleActions();
         }
 
 
-        if (selectedEvent == 1 && StainEvent.Instance.isThereAStain == false)
+        if (selectedEvent == 1 && stainEvent.isThereAStain == false)
         {
-            StainEvent.Instance.StainAppears();
-            //InputManager.Instance.ShuffleActions();
-        }
-        else
-        {
-            LaunchEvent();
+            stainEvent.StainAppears();
+            inputManager.ShuffleActions();
         }
         
 
@@ -90,14 +90,10 @@ public class AvariesManager : MonoBehaviour
         */
 
 
-        if (selectedEvent == 2 && AlarmEvent.Instance.isAlerteOn == false)
+        if (selectedEvent == 2 && alarmEvent.isAlerteOn == false)
         {
-            AlarmEvent.Instance.SetAlarm();
-            //InputManager.Instance.ShuffleActions();
-        }
-        else
-        {
-            LaunchEvent();
+            alarmEvent.SetAlarm();
+            inputManager.ShuffleActions();
         }
         
     }
@@ -110,13 +106,13 @@ public class AvariesManager : MonoBehaviour
     {
         if (currentEvent == 0)
         {
-            if (HeatEvent.Instance.isOverheated == false)
+            if (heatEvent.isOverheated == false)
                 isEventLaunch = false;
         }
 
         if (currentEvent == 1)
         {
-            if (StainEvent.Instance.isThereAStain == false)
+            if (stainEvent.isThereAStain == false)
                 isEventLaunch = false;
         }
     }

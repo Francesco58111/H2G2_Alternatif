@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 
 public class GameManager : MonoBehaviour
@@ -22,9 +23,18 @@ public class GameManager : MonoBehaviour
     public float minRange = 33;
     public float maxRange = 66;
 
+    public string goBackToMenu = "MENU";
+
+    public static GameManager Instance;
 
 
 
+
+
+    void Awake()
+    {
+        Instance = this;
+    }
 
     private void Start()
     {
@@ -35,10 +45,16 @@ public class GameManager : MonoBehaviour
     }
 
 
-    private void Update()
+
+    public void GameOver()
     {
+        SceneManager.LoadScene(goBackToMenu);
     }
 
+    /// <summary>
+    /// Débute le spawn d'un ennemy après un delai
+    /// </summary>
+    /// <returns></returns>
     IEnumerator TestSpawn()
     {
         while (isGameRunning)
@@ -56,6 +72,11 @@ public class GameManager : MonoBehaviour
         }
     }
 
+
+
+    /// <summary>
+    /// Set l'apparition des ennemies aléatoirement
+    /// </summary>
     void RandomSpawn()
     {
         randomForPosition = Random.Range(0, 100);
@@ -85,6 +106,10 @@ public class GameManager : MonoBehaviour
         InitializeSpawn();
     }
 
+
+    /// <summary>
+    /// Lance le spawn de l'ennemi
+    /// </summary>
     void InitializeSpawn()
     {
         selectedSpawnPosition = spawnPosition;
@@ -93,6 +118,10 @@ public class GameManager : MonoBehaviour
     }
 
 
+    /// <summary>
+    /// Vérifie l'état des ennemis puis set et spawn un d'entre eux (désactivé de base)
+    /// </summary>
+    /// <param name="selectedSpawn"></param>
     private void Spawn(Transform selectedSpawn)
     {
         GameObject obj = EnnemyPooling.currentState.GetPooledObject();

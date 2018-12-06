@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 using System;
 using TMPro;
 
@@ -14,6 +13,9 @@ public class InputManager : MonoBehaviour
     public int actionSelected = 1;
 
     public Scoring scoriiiiiing;
+    public StainEvent stain;
+    public HeatEvent overheat;
+    public AlarmEvent alerte;
 
     public static InputManager Instance;
 
@@ -56,13 +58,13 @@ public class InputManager : MonoBehaviour
         if (actions[actionIndex] == "Lave-Vitre")
         {
             print("Lave-Vitre");
-            StainEvent.Instance.Wip();
+            stain.Wip();
         }
 
         if (actions[actionIndex] == "Refroidir")
         {
             print("Refroidissement des machines");
-            HeatEvent.Instance.CoolDownBoost();
+            overheat.CoolDownBoost();
         }
 
         if (actions[actionIndex] == "Boost")
@@ -78,7 +80,7 @@ public class InputManager : MonoBehaviour
         if (actions[actionIndex] == "Alarme")
         {
             print("Alerte ! Il y a une alerte !");
-            AlarmEvent.Instance.SetAlarm();
+            alerte.SetAlarm();
         }
     }
 
@@ -229,7 +231,8 @@ public class InputManager : MonoBehaviour
     void ShuffleAction()
     {
         int randomIndex;
-        randomIndex = UnityEngine.Random.Range(0, actions.Count-1);
+        //print(actions.Count);
+        randomIndex = UnityEngine.Random.Range(0, actions.Count);
         actions.Insert(0, actions[randomIndex]);
         actions.RemoveAt(randomIndex + 1);
     }

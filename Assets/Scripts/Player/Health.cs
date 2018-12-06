@@ -67,6 +67,7 @@ public class Health : MonoBehaviour
         if (health < 0)
         {
             playerGO.SetActive(false);
+            GameManager.Instance.GameOver();
         }
     }
 
