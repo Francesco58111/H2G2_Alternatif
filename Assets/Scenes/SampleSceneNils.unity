@@ -12423,6 +12423,7 @@ MonoBehaviour:
   text: {fileID: 1802429380}
   score: 0
   incrementingSpeed: 60
+  wantToUse: 0
 --- !u!114 &1802429380
 MonoBehaviour:
   m_ObjectHideFlags: 0
