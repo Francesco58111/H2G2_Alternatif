@@ -27,7 +27,9 @@ public class GameManager : MonoBehaviour
 
     public static GameManager Instance;
 
+    private int un;
 
+    private int newScore;
 
 
 
@@ -45,11 +47,49 @@ public class GameManager : MonoBehaviour
     }
 
 
+    /// <summary>
+    /// Récupère les scores enregistrés
+    /// </summary>
+    public void Load()
+    {
+        newScore = PlayerPrefs.GetInt("New Score");
+        un = PlayerPrefs.GetInt("un");
+
+        CheckUn();
+    }
+
+    private void CheckUn()
+    {
+        if (newScore> un || newScore == un)
+        {
+            un = newScore;
+            SaveScores();
+            return;
+        }
+        else
+        {
+            SaveScores();
+        }
+    }
+
+
+    /// <summary>
+    /// Save les scores
+    /// </summary>
+    private void SaveScores()
+    {
+        PlayerPrefs.SetInt("un", un);
+
+        SceneManager.LoadScene(goBackToMenu);
+    }
+
+
 
     public void GameOver()
     {
         PlayerPrefs.SetInt("New Score", (int)score.score);
-        SceneManager.LoadScene(goBackToMenu);
+        score.wantToUse = true;
+        Load();
     }
     
 
