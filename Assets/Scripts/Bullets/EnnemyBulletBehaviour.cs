@@ -29,8 +29,10 @@ public class EnnemyBulletBehaviour : MonoBehaviour
     {
         if(other.gameObject.tag == "Player")
         {
-            print("TOUCHED");
+            //print("TOUCHED");
             Health.Instance.LosingHealth();
+            //Destroy(this);
+            this.gameObject.SetActive(false);
         }
     }
 }

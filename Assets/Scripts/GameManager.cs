@@ -70,35 +70,35 @@ public class GameManager : MonoBehaviour
     {
         newScore = PlayerPrefs.GetInt("New Score");
         un = PlayerPrefs.GetInt("un");
-
-
-    }
         CheckUn();
+
+    }
+
+
     private void CheckUn()
-        if (newScore> un || newScore == un)
+    {
+        if (newScore > un || newScore == un)
+        {
             un = newScore;
-    {
-        {
+            SaveScores();
             return;
+        }
         else
-            SaveScores();
-        }
-            SaveScores();
-
-    }
-        }
         {
-
-    /// </summary>
-        PlayerPrefs.SetInt("un", un);
-    /// Save les scores
-    /// <summary>
-    {
-    private void SaveScores()
-
+            SaveScores();
+        }
     }
-        SceneManager.LoadScene(goBackToMenu);
 
+
+    /// <summary>
+    /// Save les scores
+    /// </summary>
+    private void SaveScores()
+    {
+        PlayerPrefs.SetInt("un", un);
+
+        SceneManager.LoadScene(goBackToMenu);
+    }
 
 
 
@@ -108,7 +108,7 @@ public class GameManager : MonoBehaviour
         score.wantToUse = true;
         Load();
     }
-    
+
 
     /// <summary>
     /// Débute le spawn d'un ennemy après un delai

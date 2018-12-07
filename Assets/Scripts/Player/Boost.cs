@@ -74,6 +74,6 @@ public class Boost : MonoBehaviour
     public void AddEnergy()
     {
         if (currentEnergy < energyMax)
-            boostBar.fillAmount += 0.1f;
+           currentEnergy += 1f;
     }
 }

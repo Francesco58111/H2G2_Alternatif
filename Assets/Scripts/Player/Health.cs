@@ -33,8 +33,10 @@ public class Health : MonoBehaviour
         CheckHealth();
         HealthBarUpdate();
 
+        /*
         if (Input.GetKeyDown(KeyCode.W))
             LosingHealth();
+            */
     }
 
     /// <summary>
