@@ -8,19 +8,26 @@ public class Menu : MonoBehaviour
 {
     public string sceneToLoad = "FINAL";
 
-    private int newScore;
+    public TextMeshProUGUI bestScore;
+    public TextMeshProUGUI yourScore;
 
-    public List<TextMeshProUGUI> scoreSlots;
-    public List<int> scores;
+    public int newScore;
+    public int lastScore;
 
 
 
 
     private void Start()
     {
-        Load();
+        SetNewScores();
     }
 
+    private void SetNewScores()
+    {
+        newScore = PlayerPrefs.GetInt("New Score");
+        lastScore = PlayerPrefs.GetInt("un");
+        PrintScores();
+    }
 
     void Update()
     {
@@ -28,26 +35,9 @@ public class Menu : MonoBehaviour
             SceneManager.LoadScene(sceneToLoad);
     }
 
-
-    public void Load()
+    private void PrintScores()
     {
-        newScore = PlayerPrefs.GetInt("New Score");
-        SetNewScore();
-    }
-
-
-    private void SetNewScore()
-    {
-        for (int i = 0; i < scoreSlots.Count; i++)
-        {
-            if(newScore > scores[i])
-            {
-                scores.Insert(i, newScore);
-                scores.Remove(5);
-                scoreSlots[i].text = newScore.ToString();
-
-                break;
-            }
-        }
+        bestScore.text = lastScore.ToString();
+        yourScore.text = newScore.ToString();
     }
 }

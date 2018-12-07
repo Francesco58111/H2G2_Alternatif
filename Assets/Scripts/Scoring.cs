@@ -9,6 +9,7 @@ public class Scoring : MonoBehaviour
     public float score;
     public float incrementingSpeed;
 
+    public bool wantToUse;
 
     public float difficultyLevel = 0;
     private float scoreChecker;
@@ -20,7 +21,7 @@ public class Scoring : MonoBehaviour
 
     void Update()
     {
-        if (ShipController.Instance.gameObject == true)
+        if (!wantToUse)
             ScoreUpdate();
 
         if (Input.GetKeyDown(KeyCode.N))

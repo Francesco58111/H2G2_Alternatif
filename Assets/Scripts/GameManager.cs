@@ -32,7 +32,9 @@ public class GameManager : MonoBehaviour
     //niveau de difficulté actuel du jeu
     private int difficultyLevel;
     private int spawnEveryDifficultyLevel = 0;
+    private int un;
 
+    private int newScore;
     public Scoring scoreFloat;
 
 
@@ -61,12 +63,50 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Récupère les scores enregistrés
+    /// </summary>
+    public void Load()
+    {
+        newScore = PlayerPrefs.GetInt("New Score");
+        un = PlayerPrefs.GetInt("un");
+
+
+    }
+        CheckUn();
+    private void CheckUn()
+        if (newScore> un || newScore == un)
+            un = newScore;
+    {
+        {
+            return;
+        else
+            SaveScores();
+        }
+            SaveScores();
+
+    }
+        }
+        {
+
+    /// </summary>
+        PlayerPrefs.SetInt("un", un);
+    /// Save les scores
+    /// <summary>
+    {
+    private void SaveScores()
+
+    }
+        SceneManager.LoadScene(goBackToMenu);
+
+
 
 
     public void GameOver()
     {
         PlayerPrefs.SetInt("New Score", (int)score.score);
-        SceneManager.LoadScene(goBackToMenu);
+        score.wantToUse = true;
+        Load();
     }
     
 
