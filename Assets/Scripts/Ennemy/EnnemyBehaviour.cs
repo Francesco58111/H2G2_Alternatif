@@ -17,13 +17,6 @@ public class EnnemyBehaviour : MonoBehaviour
 
 
 
-
-    private void Start()
-    {
-        //Tir toutes les "firetime" seconde(s)
-        ennemyHealth = 3;
-    }
-
     void Update()
     {
         CheckingHealth();

@@ -10,41 +10,37 @@ public class BoostSpawner : MonoBehaviour {
 
     public GameObject boostPrefab;
 
-    private int actualScore;
-
-    private int scoreChecker;
-    private int score;
-
-    private Scoring scoreFloat;
-
-    public float scoreForBoostSpawn = 500;
+    private float score;
+    private float scoreReseter;
+    private float scoreChecker;
 
 
 
+    public Scoring scoreFloat;
 
-    void Start () {
-		
-	}
+    public float scoreForBoostSpawn = 20;
 	
 
 	void Update ()
     {
-        actualScore = (int)scoreFloat.score;
-        scoreChecker = actualScore - score ;
+        
+        score = (float)scoreFloat.score;
+        scoreChecker = score - scoreReseter ;
+
 
         if ( scoreChecker >= scoreForBoostSpawn)
         {
-            randomBoostSpawn();
-            score = actualScore;
+
+            scoreReseter = score;
             scoreChecker = 0;
-            
+            randomBoostSpawn();
+
         }
     }
 
     void randomBoostSpawn()
     {
         randomSpawnPosition = Random.Range(1, 3);
-
         if (randomSpawnPosition == 1)
         {
             Instantiate<GameObject>(boostPrefab, spawnPos[0]);

@@ -10,6 +10,11 @@ public class Scoring : MonoBehaviour
     public float incrementingSpeed;
 
 
+    public float difficultyLevel = 0;
+    private float scoreChecker;
+    private float scoreReseter;
+
+    public float scoreToImproveDifficulty = 500;
 
 
 
@@ -20,11 +25,19 @@ public class Scoring : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.N))
             OnLightSpeed();
+
+        scoreChecker = score - scoreReseter;
+
+        if (scoreChecker >= scoreToImproveDifficulty)
+        {
+            difficultyLevel++;
+            scoreReseter = score;
+            scoreChecker = 0;
+        }
+
     }
 
-
-
-    public void OnLightSpeed()
+        public void OnLightSpeed()
     {
         Health.Instance.isInvisible = true;
         incrementingSpeed = 200;

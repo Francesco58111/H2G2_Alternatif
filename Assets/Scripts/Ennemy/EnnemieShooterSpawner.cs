@@ -8,6 +8,8 @@ public class EnnemieShooterSpawner : MonoBehaviour {
 
     public GameObject ennemieShooter;
 
+    public Scoring scoreFloat;
+
     //spawnrate
     private float delay ;
     public float spawnDelay = 8;
@@ -22,6 +24,13 @@ public class EnnemieShooterSpawner : MonoBehaviour {
 
     private Vector3 spawnPosition;
 
+    //niveau de difficulté qui sert a check le multiple du niveau de difficulté
+    private int currentDifficultyLevel;
+    //niveau de difficulté actuel du jeu
+    private int difficultyLevel;
+    private int spawnEveryDifficultyLevel = 0;
+
+
     private void Start()
     {
         isGameRunning = true;
@@ -35,7 +44,18 @@ public class EnnemieShooterSpawner : MonoBehaviour {
 	void Update ()
     {
         spawnPosition = new Vector3(Random.Range(minSpawnRangeX,maxSpawnRangeX),Random.Range(minSpawnRangeY,maxSpawnRangeY),spawnerObjectPosition.position.z);
-	}
+
+        difficultyLevel = (int)scoreFloat.difficultyLevel;
+        currentDifficultyLevel = difficultyLevel - spawnEveryDifficultyLevel;
+        if (currentDifficultyLevel == 1)
+        {
+            spawnDelay = spawnDelay - (spawnDelay /10);
+            spawnEveryDifficultyLevel++;
+            currentDifficultyLevel = 0;
+        }
+
+
+    }
 
     void StartMovement()
     {
@@ -61,7 +81,10 @@ public class EnnemieShooterSpawner : MonoBehaviour {
 
     void Spawn()
     {
-        GameObject Temp = Instantiate<GameObject>(ennemieShooter, spawnPosition, Quaternion.Euler(90,0,0));
-        Temp.transform.SetParent(this.transform);
+            GameObject Temp = Instantiate<GameObject>(ennemieShooter, spawnPosition, Quaternion.Euler(90, 0, 0));
+            Temp.transform.SetParent(this.transform);
+
+       
+
     }
 }

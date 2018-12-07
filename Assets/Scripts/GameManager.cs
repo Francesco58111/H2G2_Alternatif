@@ -27,8 +27,13 @@ public class GameManager : MonoBehaviour
 
     public static GameManager Instance;
 
+    //niveau de difficulté qui sert a check le multiple du niveau de difficulté
+    private int currentDifficultyLevel;
+    //niveau de difficulté actuel du jeu
+    private int difficultyLevel;
+    private int spawnEveryDifficultyLevel = 0;
 
-
+    public Scoring scoreFloat;
 
 
     void Awake()
@@ -42,6 +47,18 @@ public class GameManager : MonoBehaviour
         delay = 0;
         isGameRunning = true;
         StartCoroutine(TestSpawn());
+    }
+
+    private void Update()
+    {
+        difficultyLevel = (int)scoreFloat.difficultyLevel;
+        currentDifficultyLevel = difficultyLevel - spawnEveryDifficultyLevel;
+        if (currentDifficultyLevel == 1)
+        {
+            spawnDelay = spawnDelay - (spawnDelay / 10);
+            spawnEveryDifficultyLevel++;
+            currentDifficultyLevel = 0;
+        }
     }
 
 
