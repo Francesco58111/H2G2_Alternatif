@@ -34,7 +34,7 @@ public class StainEvent : MonoBehaviour
     {
         currentAlpha = 1;
         stainAnimator.gameObject.SetActive(true);
-        stainAnimator.SetTrigger("Appears");
+        stainAnimator.SetBool("Appears", true);
         isThereAStain = true;
         
     }
@@ -57,7 +57,7 @@ public class StainEvent : MonoBehaviour
 
             if (currentAlpha > 0.01f)
             {
-                currentAlpha -= 0.33f;
+                currentAlpha -= 0.35f;
             }
             else
             {
@@ -69,7 +69,7 @@ public class StainEvent : MonoBehaviour
     private void CleanVision()
     {
         currentAlpha = 0;
-        stainAnimator.SetTrigger("Disappears");
+        stainAnimator.SetBool("Appears", false);
         isThereAStain = false;
     }
 }

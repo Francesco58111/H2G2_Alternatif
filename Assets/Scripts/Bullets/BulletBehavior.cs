@@ -42,7 +42,7 @@ public class BulletBehavior : MonoBehaviour {
     public void Update()
     {
         transform.Translate(targetVector * Time.deltaTime*bulletSpeed);
-        Destroy(this, lifeTime);
+        Destroy(this.gameObject, lifeTime);
     }
 
     /// <summary>

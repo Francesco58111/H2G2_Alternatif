@@ -9,6 +9,7 @@ public class HeatEvent : MonoBehaviour
     public bool isOverheated;
     public Image weaponHeat;
     public Image overheat;
+    public Image overheat2;
 
     public float currentHeat;
     private float maxHeat = 10;
@@ -29,7 +30,9 @@ public class HeatEvent : MonoBehaviour
         if (!isOverheated)
             Cooldown();
         else
+        {
             Overheating();
+        }
     }
 
     /// <summary>
@@ -39,8 +42,10 @@ public class HeatEvent : MonoBehaviour
     {
         ShootScript.Instance.canShoot = false;
         overheat.gameObject.SetActive(true);
+        overheat2.gameObject.SetActive(true);
+        
 
-        if (currentHeat < 0)
+        if (currentHeat < 0 || currentHeat == 0)
         {
             isOverheated = false;
         }
@@ -87,7 +92,7 @@ public class HeatEvent : MonoBehaviour
             
         }
 
-        if (currentHeat>maxHeat)
+        if (currentHeat>maxHeat || currentHeat == maxHeat)
         {
             isOverheated = true;
         }
@@ -95,6 +100,7 @@ public class HeatEvent : MonoBehaviour
         {
             isOverheated = false;
             overheat.gameObject.SetActive(false);
+            overheat2.gameObject.SetActive(false);
         }
     }
 }

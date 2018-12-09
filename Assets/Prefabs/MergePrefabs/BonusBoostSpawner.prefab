@@ -20,7 +20,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4422743573475030}
   - component: {fileID: 114138985755430308}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: BonusBoostSpawner
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -34,7 +34,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1580091940850622}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 5.4453754, y: 1.9949312, z: 11.425472}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -57,4 +57,6 @@ MonoBehaviour:
   - {fileID: 0}
   boostPrefab: {fileID: 1941924189686460, guid: bd8c9abdec5c3734180d10fadf3f19ab,
     type: 2}
-  scoreForBoostSpawn: 500
+  scoreFloat: {fileID: 0}
+  scoreForBoostSpawn: 100
+  delayBoostAppears: 2

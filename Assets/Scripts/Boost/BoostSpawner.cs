@@ -19,11 +19,27 @@ public class BoostSpawner : MonoBehaviour {
     public Scoring scoreFloat;
 
     public float scoreForBoostSpawn = 20;
-	
+    public float delayBoostAppears = 2;
 
-	void Update ()
+
+
+
+    private void Start()
     {
-        
+        StartCoroutine(boostApparitionTimer());
+    }
+
+
+    IEnumerator boostApparitionTimer()
+    {
+        yield return new WaitForSeconds(delayBoostAppears);
+        randomBoostSpawn();
+        StartCoroutine(boostApparitionTimer());
+    }
+
+    void Update ()
+    {
+        /*
         score = (float)scoreFloat.score;
         scoreChecker = score - scoreReseter ;
 
@@ -36,6 +52,7 @@ public class BoostSpawner : MonoBehaviour {
             randomBoostSpawn();
 
         }
+        */
     }
 
     void randomBoostSpawn()

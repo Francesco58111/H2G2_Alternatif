@@ -8,6 +8,7 @@ public class AlarmEvent : MonoBehaviour
     public AudioClip alarmClip;
     public AudioSource alarmSource;
     public GameObject alarmIcon;
+    public GameObject alarmIcon2;
 
     public bool isAlerteOn = false;
 
@@ -30,12 +31,14 @@ public class AlarmEvent : MonoBehaviour
             alarmSource.Play();
             isAlerteOn = true;
             alarmIcon.SetActive(true);
+            alarmIcon2.SetActive(true);
         }
         else
         {
             alarmSource.Stop();
             isAlerteOn = false;
             alarmIcon.SetActive(false);
+            alarmIcon2.SetActive(false);
         }
         
     }

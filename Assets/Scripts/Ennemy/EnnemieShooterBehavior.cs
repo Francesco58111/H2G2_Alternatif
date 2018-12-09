@@ -22,6 +22,8 @@ public class EnnemieShooterBehavior : MonoBehaviour {
 
     public GameObject parentObject;
 
+    private bool isCoroutineActive;
+
 
 
 
@@ -34,7 +36,7 @@ public class EnnemieShooterBehavior : MonoBehaviour {
     }
     private void Awake()
     {
-        StartCoroutine(Shoot());
+        isCoroutineActive = false;
     }
     void Update()
     {
@@ -43,8 +45,14 @@ public class EnnemieShooterBehavior : MonoBehaviour {
         {
             transform.Translate(Vector3.down * Time.deltaTime * ennemySpeed);
             moveTime -= Time.deltaTime;
+            
         }
-        
+        if (moveTime<=0 && isCoroutineActive == false)
+        { 
+            isCoroutineActive = true;
+            StartCoroutine(Shoot());
+            GetComponent<Animator>().Play("PrepareToShootAnimation");
+        }
 
 
 
@@ -97,9 +105,10 @@ public class EnnemieShooterBehavior : MonoBehaviour {
     {
         for (; ;)
         {
-            Instantiate<GameObject>(ennemieBullet,gameObject.transform.position,Quaternion.identity);
-            print("is in coroutine");
+
             yield return new WaitForSeconds(reloadDelay);
+            Instantiate<GameObject>(ennemieBullet, gameObject.transform.position, Quaternion.identity);
+
         }
 
     }

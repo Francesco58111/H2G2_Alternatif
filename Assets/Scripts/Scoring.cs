@@ -24,9 +24,11 @@ public class Scoring : MonoBehaviour
         if (!wantToUse)
             ScoreUpdate();
 
+        /*
         if (Input.GetKeyDown(KeyCode.N))
             OnLightSpeed();
 
+    */
         scoreChecker = score - scoreReseter;
 
         if (scoreChecker >= scoreToImproveDifficulty)
