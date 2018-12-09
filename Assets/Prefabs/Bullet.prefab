@@ -24,7 +24,7 @@ GameObject:
   - component: {fileID: 135612101400255692}
   - component: {fileID: 54127507054444298}
   - component: {fileID: 114568694450750438}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Bullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -38,7 +38,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1183884137016144}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -1.4181173, y: -1.6402354, z: -2.6823912}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -113,12 +113,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   viseur: {fileID: 0}
-  player: {fileID: 0}
+  cam: {fileID: 0}
   bulletSpeed: 40
   durability: 1
   damage: 1
-  lifeTime: 5
+  lifeTime: 2
   ennemyBehaviour: {fileID: 0}
+  ennemieShooterBehavior: {fileID: 0}
 --- !u!135 &135612101400255692
 SphereCollider:
   m_ObjectHideFlags: 1

@@ -12,8 +12,7 @@ public class Boost : MonoBehaviour
     float energyMax = 10;
     public Image boostBar;
 
-    public float lightSpeedDuration = 1;
-
+    [Header("Lightspeed Parameters")]
     public bool onBoost;
     public bool canBoost;
 
@@ -57,7 +56,7 @@ public class Boost : MonoBehaviour
 
         if (currentEnergy > 0)
         {
-            currentEnergy -= 0.1f;
+            currentEnergy -= 0.05f;
         }
         else
         {
@@ -74,6 +73,6 @@ public class Boost : MonoBehaviour
     public void AddEnergy()
     {
         if (currentEnergy < energyMax)
-           currentEnergy += 1f;
+           currentEnergy += 3f;
     }
 }

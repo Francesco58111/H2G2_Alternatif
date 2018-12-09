@@ -10,6 +10,7 @@ public class AvariesManager : MonoBehaviour
     private int lastEvent;
     public bool isEventLaunch;
 
+    [Header("Events")]
     public InputManager inputManager;
     public StainEvent stainEvent;
     public AlarmEvent alarmEvent;
@@ -57,7 +58,7 @@ public class AvariesManager : MonoBehaviour
     {
         //StopAllCoroutines();
         if(currentEvent == lastEvent)
-            currentEvent = Random.Range(0, 2);
+            currentEvent = Random.Range(0, 3);
         PlayEvent(currentEvent);
         
     }
@@ -73,27 +74,29 @@ public class AvariesManager : MonoBehaviour
         if (selectedEvent == 0 && heatEvent.isOverheated == false)
         {
             heatEvent.Overheating();
-            inputManager.ShuffleActions();
+            heatEvent.currentHeat = 10;
+            heatEvent.isOverheated = true;
+            //inputManager.ShuffleActions();
         }
 
 
         if (selectedEvent == 1 && stainEvent.isThereAStain == false)
         {
             stainEvent.StainAppears();
-            inputManager.ShuffleActions();
+            //inputManager.ShuffleActions();
         }
         
 
-        /*
-        if (selectedEvent == 2)
+        
+        if (selectedEvent == 3)
             InputManager.Instance.ShuffleActions();
-        */
+        
 
 
         if (selectedEvent == 2 && alarmEvent.isAlerteOn == false)
         {
             alarmEvent.SetAlarm();
-            inputManager.ShuffleActions();
+            //inputManager.ShuffleActions();
         }
         
     }

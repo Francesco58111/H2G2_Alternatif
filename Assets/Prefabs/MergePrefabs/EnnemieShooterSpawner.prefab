@@ -20,7 +20,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4831559689452980}
   - component: {fileID: 114877426038368394}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: EnnemieShooterSpawner
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -34,7 +34,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1234307434723884}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 41.6}
+  m_LocalPosition: {x: 0, y: 5, z: 30}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -54,7 +54,8 @@ MonoBehaviour:
   isGameRunning: 0
   ennemieShooter: {fileID: 1192648964280108, guid: 9ba520c5b626de7469d77824771b3e6f,
     type: 2}
-  spawnDelay: 8
-  minSpawnRangeX: 20
-  minSpawnRangeY: 20
+  scoreFloat: {fileID: 0}
+  spawnDelay: 10
+  minSpawnRangeX: 7
+  minSpawnRangeY: 5
   spawnerObjectPosition: {fileID: 4831559689452980}
