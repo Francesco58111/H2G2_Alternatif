@@ -15,6 +15,12 @@ public class EnnemyBehaviour : MonoBehaviour
     [SerializeField]
     int ennemyHealth = 3;
 
+    public ParticleSystem explosion;
+    public MeshRenderer mesh;
+
+
+
+
 
 
     void Update()
@@ -41,8 +47,8 @@ public class EnnemyBehaviour : MonoBehaviour
     {
         if (ennemyHealth < 1)
         {
-            this.gameObject.SetActive(false);
-            ennemyHealth = 3;
+            StartCoroutine(Dying());
+            //ennemyHealth = 3;
         }
     }
 
@@ -79,7 +85,17 @@ public class EnnemyBehaviour : MonoBehaviour
     /// </summary>
     private void DeadCollision()
     {
-        this.gameObject.SetActive(false);
         Health.Instance.LosingHealth();
+        StartCoroutine(Dying());
+    }
+
+    IEnumerator Dying()
+    {
+        var duration = explosion.main.duration;
+        mesh.enabled = false;
+        explosion.Play();
+        yield return new WaitForSeconds(duration);
+        this.gameObject.SetActive(false);
+        ennemyHealth = 3;
     }
 }

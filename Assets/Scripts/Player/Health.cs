@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using System.Collections;
 
 public class Health : MonoBehaviour
 {
@@ -17,8 +18,9 @@ public class Health : MonoBehaviour
     public float damageTaken;
     public bool isInvisible;
 
-    [Header("Récupération du GameObject player")]
-    public GameObject playerGO;
+    [Header("Mort du player")]
+    public MeshRenderer playerGO;
+    public ParticleSystem explosion;
 
 
 
@@ -71,10 +73,13 @@ public class Health : MonoBehaviour
     {
         if (health < 0)
         {
-            playerGO.SetActive(false);
-            GameManager.Instance.GameOver();
+            //FXManager.Instance.InitializePS(ps, playerGO.transform);
+            //playerGO.SetActive(false);
+            //GameManager.Instance.GameOver();
+            StartCoroutine(Dying());
         }
     }
+    
 
     /// <summary>
     /// Update de l'UI
@@ -82,6 +87,16 @@ public class Health : MonoBehaviour
     private void HealthBarUpdate()
     {
         healthBar.fillAmount = health / healthMax;
+    }
+
+    IEnumerator Dying()
+    {
+        var duration = explosion.main.duration;
+        playerGO.enabled = false;
+        explosion.Play();
+        yield return new WaitForSeconds(duration);
+        playerGO.gameObject.SetActive(false);
+        GameManager.Instance.GameOver();
     }
 
 }

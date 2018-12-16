@@ -14,12 +14,21 @@ public class Menu : MonoBehaviour
     public int newScore;
     public int lastScore;
 
+    public AudioClip musicClip;
+    public AudioSource musicSource;
+
+    private bool canStart;
+
 
 
 
     private void Start()
     {
         SetNewScores();
+        musicSource.clip = musicClip;
+        musicSource.Play();
+        canStart = false;
+        StartCoroutine(delayBeforeStart());
     }
 
     private void SetNewScores()
@@ -31,13 +40,22 @@ public class Menu : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space) && canStart == true)
+        {
+            musicSource.Stop();
             SceneManager.LoadScene(sceneToLoad);
+        }  
     }
 
     private void PrintScores()
     {
         bestScore.text = lastScore.ToString();
         yourScore.text = newScore.ToString();
+    }
+
+    IEnumerator delayBeforeStart()
+    {
+        yield return new WaitForSeconds(2);
+        canStart = true;
     }
 }

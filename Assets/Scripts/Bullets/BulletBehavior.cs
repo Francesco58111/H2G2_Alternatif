@@ -19,6 +19,11 @@ public class BulletBehavior : MonoBehaviour {
     public EnnemyBehaviour ennemyBehaviour;
     public EnnemieShooterBehavior ennemieShooterBehavior;
 
+    
+    public ParticleSystem explosion;
+    public MeshRenderer mesh;
+
+    
 
 
     private void Awake()
@@ -55,9 +60,10 @@ public class BulletBehavior : MonoBehaviour {
         {
             print("Touché");
 
-            
+            //FXManager.Instance.InitializePS(ps, this.transform);
+
             other.gameObject.GetComponent<EnnemyBehaviour>().TakingDamage(damage);
-            
+
             /*
             if (ennemyBehaviour == null)
             {
@@ -65,12 +71,13 @@ public class BulletBehavior : MonoBehaviour {
             }
             ennemyBehaviour.TakingDamage(damage);
             */
-            this.gameObject.SetActive(false);
+            StartCoroutine(Dying());
         }
         if (other.gameObject.tag == "EnnemyShooter")
         {
             print("Touché");
 
+            //FXManager.Instance.InitializePS(ps, this.transform);
 
             other.gameObject.GetComponent<EnnemieShooterBehavior>().TakingDamage(damage);
 
@@ -81,12 +88,19 @@ public class BulletBehavior : MonoBehaviour {
             }
             ennemyBehaviour.TakingDamage(damage);
             */
-            this.gameObject.SetActive(false);
+            StartCoroutine(Dying());
         }
 
 
         
     }
 
-
+    IEnumerator Dying()
+    {
+        var duration = explosion.main.duration;
+        mesh.enabled = false;
+        explosion.Play();
+        yield return new WaitForSeconds(duration);
+        this.gameObject.SetActive(false);
+    }
 }

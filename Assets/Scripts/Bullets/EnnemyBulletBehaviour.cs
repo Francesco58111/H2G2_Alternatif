@@ -13,6 +13,13 @@ public class EnnemyBulletBehaviour : MonoBehaviour
 
     private Vector3 bulletVector;
 
+    public ParticleSystem explosion;
+    public MeshRenderer mesh;
+
+
+
+
+
     void Awake()
     {
         playerTransform = GameObject.Find("Player").GetComponent<Transform>();
@@ -29,10 +36,17 @@ public class EnnemyBulletBehaviour : MonoBehaviour
     {
         if(other.gameObject.tag == "Player")
         {
-            //print("TOUCHED");
+            StartCoroutine(Dying());
             Health.Instance.LosingHealth();
-            //Destroy(this);
-            this.gameObject.SetActive(false);
         }
+    }
+
+    IEnumerator Dying()
+    {
+        var duration = explosion.main.duration;
+        mesh.enabled = false;
+        explosion.Play();
+        yield return new WaitForSeconds(duration);
+        this.gameObject.SetActive(false);
     }
 }

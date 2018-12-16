@@ -24,6 +24,9 @@ public class EnnemieShooterBehavior : MonoBehaviour {
 
     private bool isCoroutineActive;
 
+    public ParticleSystem explosion;
+    public MeshRenderer mesh;
+
 
 
 
@@ -53,11 +56,8 @@ public class EnnemieShooterBehavior : MonoBehaviour {
             StartCoroutine(Shoot());
             GetComponent<Animator>().Play("PrepareToShootAnimation");
         }
-
-
-
-
     }
+
 
     /// <summary>
     /// Inflige des dégâts
@@ -76,29 +76,9 @@ public class EnnemieShooterBehavior : MonoBehaviour {
     {
         if (ennemyHealth < 1)
         {
-            Destroy(this.gameObject);
+            StartCoroutine(Dying());
+            
         }
-    }
-
-    /// <summary>
-    /// Collision avec le player _ GAME OVER
-    /// </summary>
-    /// <param name="other"></param>
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject.tag == "Player")
-        {
-            DeadCollision();
-        }
-    }
-
-
-    /// <summary>
-    /// Désactivation de l'ennemy pour le pooling
-    /// </summary>
-    private void DeadCollision()
-    {
-        //Destroy(this.gameObject);
     }
 
     IEnumerator Shoot()
@@ -111,6 +91,15 @@ public class EnnemieShooterBehavior : MonoBehaviour {
 
         }
 
+    }
+
+    IEnumerator Dying()
+    {
+        var duration = explosion.main.duration;
+        mesh.enabled = false;
+        explosion.Play();
+        yield return new WaitForSeconds(duration);
+        Destroy(this.gameObject);
     }
 
 }

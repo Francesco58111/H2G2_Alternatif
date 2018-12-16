@@ -19,8 +19,6 @@ public class ShipController : MonoBehaviour {
     public static ShipController Instance;
 
 
-
-
     private void Awake()
     {
         Instance = this;
@@ -37,7 +35,7 @@ public class ShipController : MonoBehaviour {
 
     void Update()
     {
-        PlayerMove();
+        PlayerMove(); 
     }
 
     /// <summary>
